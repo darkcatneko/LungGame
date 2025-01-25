@@ -1,4 +1,5 @@
 using System.Collections;
+using Game.Audio;
 using Gamemanager;
 using UnityEngine;
 
@@ -19,7 +20,9 @@ public class WallShrinkController : MonoBehaviour
 
     [SerializeField] private float curWidth;
     [SerializeField] private int curWallShrinkIndex = 0; // 当前使用的缩放索引
-
+    
+    [SerializeField] private AudioData wallShrinkAudioData;
+    
     private bool isShrinking = false; // 防止多次调用导致的过渡冲突
 
     private void Awake()
@@ -33,6 +36,7 @@ public class WallShrinkController : MonoBehaviour
     void SmoothWallShrink()
     {
         StartCoroutine(IESmoothWallShrink(wallShrinkData.wallShrinkValue[curWallShrinkIndex]));
+        AudioManager.Instance.PlayRandomSFX(wallShrinkAudioData);
         curWallShrinkIndex++; // 更新索引值
     }
     

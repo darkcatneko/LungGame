@@ -14,4 +14,9 @@ namespace Gamemanager
     {
         
     }
+
+    public class PlayerHurt : GameEventMessageBase
+    {
+        
+    }
 }

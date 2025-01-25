@@ -122,6 +122,8 @@ MonoBehaviour:
   breath_: 0
   thin_: {fileID: 8245125671497116859}
   fat_: {fileID: 5425953652008438590}
+  enemyDeath_audioData_:
+    audioClip: {fileID: 8300000, guid: b84edc963c0e8ac4ba5ec98308a6b3b8, type: 3}
 --- !u!1 &5425953652008438590
 GameObject:
   m_ObjectHideFlags: 0

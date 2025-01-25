@@ -1,5 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
+using Game.Audio;
+using Gamemanager;
 
 public class MonsteBreathrBehavior : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class MonsteBreathrBehavior : MonoBehaviour
     float elapsedTime = 0f;
     [SerializeField] GameObject thin_;
     [SerializeField] GameObject fat_;
+    
+    [SerializeField] AudioData enemyDeath_audioData_;
     void Start()
     {
 
@@ -41,4 +45,14 @@ public class MonsteBreathrBehavior : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Destroy(transform.parent.gameObject);
+            GameManager.Instance.MainGameEvent.Send(new PlayerHurt());
+            AudioManager.Instance.PlayRandomSFX(enemyDeath_audioData_);
+        }
+    }
+    
 }
