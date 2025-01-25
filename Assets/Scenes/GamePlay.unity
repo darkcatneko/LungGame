@@ -149,7 +149,7 @@ Transform:
   m_GameObject: {fileID: 15779435}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.656437, y: -16.33283, z: 161.92815}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -192,6 +192,7 @@ GameObject:
   - component: {fileID: 260246297}
   - component: {fileID: 260246296}
   - component: {fileID: 260246298}
+  - component: {fileID: 260246299}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -238,6 +239,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 319f8553e246ac045b38c36046aad105, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &260246299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260246295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73dc973498ceef8418d25649335d31dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeData:
+    <maxTime>k__BackingField: 25
+    <levelTime>k__BackingField:
+    - 16
+    - 12
+    - 8
+    - 4
+    - 0
+  curTime: 0
 --- !u!1 &366821566
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +286,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 366821566}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9d338abb054c0f24ea6e1891a87c38c6, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -426,6 +448,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8094372715087377449, guid: 5feccdb1d80865143be60bc0e29b51c4, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 9d338abb054c0f24ea6e1891a87c38c6, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -838,7 +864,7 @@ MonoBehaviour:
   status_: 0
   playerRigidbody_: {fileID: 1857671255}
   basicSpeed_: 10
-  playerDirection_: {x: 0, y: 0}
+  playerDirection_: {x: 0, y: 1}
 --- !u!1 &1859698153 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6225102882920689056, guid: 5feccdb1d80865143be60bc0e29b51c4, type: 3}
@@ -996,7 +1022,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2011226249}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 9d338abb054c0f24ea6e1891a87c38c6, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
