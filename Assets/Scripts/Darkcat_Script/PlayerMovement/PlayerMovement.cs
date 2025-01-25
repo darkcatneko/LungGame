@@ -15,10 +15,30 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float hurtTime_;
     
     [SerializeField] AudioData playerHurt_audioData_;
+
+    [SerializeField] private bool playerBGMOpen;
+    
+    [SerializeField] private GameObject breathingNomalMusicPlayer;
+    [SerializeField] private GameObject runMusicPlayer;
     private void Start()
     {
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnPlayerMove, cmd => { playerDirection_ = cmd.Input; });
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnPlayerHurt, cmd => { PlayerHurt(); });
+        GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.TriggerWallShrink, cmd => { PlayerCameraShaking(); });
+    }
+
+    private void Update()
+    {
+        if (playerBGMOpen)
+        {
+            breathingNomalMusicPlayer.SetActive(true);
+            runMusicPlayer.SetActive(true);
+        }
+        else
+        {
+            breathingNomalMusicPlayer.SetActive(false);
+            runMusicPlayer.SetActive(false);
+        }
     }
 
     private void FixedUpdate()
@@ -35,6 +55,11 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void PlayerCameraShaking()
+    {
+        GetComponentInChildren<Animator>().SetTrigger("Shaking");
+    }
+    
     private void PlayerHurt()
     {
         if (status_ != PlayerStatus.Hurt) // 避免重複觸發
@@ -46,10 +71,12 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator SwitchToHurt()
     {
         status_ = PlayerStatus.Hurt;
+        playerBGMOpen = false;
         AudioManager.Instance.PlayRandomSFX(playerHurt_audioData_);
         UIManager.Instance.OpenPanel(UIType.GameBlood_TransitionPanel);
         yield return new WaitForSeconds(hurtTime_); // 等待2秒
         status_ = PlayerStatus.Run;
+        playerBGMOpen = true;
     }
 }
 
