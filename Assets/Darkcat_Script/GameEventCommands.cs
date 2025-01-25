@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Gamemanager
 {
-
+    public class WallShrink : GameEventMessageBase
+    {
+        
+    }
 
 }

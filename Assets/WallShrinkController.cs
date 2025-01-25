@@ -1,4 +1,5 @@
 using System.Collections;
+using Gamemanager;
 using UnityEngine;
 
 public class WallShrinkController : MonoBehaviour
@@ -21,17 +22,12 @@ public class WallShrinkController : MonoBehaviour
 
     private bool isShrinking = false; // 防止多次调用导致的过渡冲突
 
-    private void Start()
+    private void Awake()
     {
         curWidth = wallShrinkData.maxWidth;
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && !isShrinking && curWallShrinkIndex < wallShrinkData.wallShrinkValue.Length)
-        {
-            SmoothWallShrink();
-        }
+        GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.TriggerWallShrink,
+            cmd => { SmoothWallShrink(); });
+        
     }
 
     void SmoothWallShrink()
