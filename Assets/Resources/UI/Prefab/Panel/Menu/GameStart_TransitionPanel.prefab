@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 1548478541951606784}
   - component: {fileID: 7669042848053487260}
   - component: {fileID: 8795554544313794083}
-  - component: {fileID: 4051253928891002421}
+  - component: {fileID: 4820022329606259286}
   m_Layer: 5
   m_Name: GameStart_TransitionPanel
   m_TagString: Untagged
@@ -201,7 +201,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4051253928891002421
+--- !u!114 &4820022329606259286
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,7 +213,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abcad1f7e276f9f4eb021834d337bdfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSetUIActive: 0
+  isSetInputActive: 0
+  audio_NormalBtn:
+    audioClip: {fileID: 0}
 --- !u!1 &8179488164120137043
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,6 +26,7 @@ namespace Game.UI
         GameEndingMenu,
         //Popup 彈窗類 UI
         GetItemPopup,
+        GameBlood_TransitionPanel,
     }
 
     /// <summary>
@@ -251,7 +252,8 @@ namespace Game.UI
                 case UIType.GameOverMenu:
                 case UIType.GameEndingMenu:
                     return UIGroup.Menu;
-
+                
+                case UIType.GameBlood_TransitionPanel:
                 case UIType.GetItemPopup:
                     return UIGroup.Popup;
                 default:

@@ -1,6 +1,6 @@
 namespace Game.UI
 {
-    public class GameStart_TransitionPanel : BasePanel
+    public class GameBlood_TransitionPanel : BasePanel
     {
         protected override void Awake()
         {

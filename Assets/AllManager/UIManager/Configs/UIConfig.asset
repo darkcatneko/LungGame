@@ -25,6 +25,8 @@ MonoBehaviour:
     resourcePath: UI/Prefab/Panel/Menu/GameEnd/GameOverMenu
   - uiType: 8
     resourcePath: UI/Prefab/Panel/Menu/GameEnd/GameEndingMenu
+  - uiType: 10
+    resourcePath: UI/Prefab/Panel/Menu/GameBlood_TransitionPanel
   sceneUIConfigs:
   - sceneType: 0
     startPanels: 
