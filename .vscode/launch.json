@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach to Unity Editor",
+            "type": "unity",
+            "request": "attach"
+        },
+        {
+            "name": "Attach to Unity Play Mode",
+            "type": "unity",
+            "request": "attach",
+            "processId": "${command:pickUnityProcess}"
+        },
+        {
+            "name": "Attach to Unity",
+            "type": "vstuc",
+            "request": "attach"
+        }
+    ]
+}
