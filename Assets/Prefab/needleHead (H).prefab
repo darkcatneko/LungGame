@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2164834527290708029}
+  - component: {fileID: -5869051474474131421}
   m_Layer: 0
   m_Name: needleHead (H)
   m_TagString: Untagged
@@ -32,6 +33,19 @@ Transform:
   - {fileID: 8904769362751522809}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &-5869051474474131421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128979627338468290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 990661e18d447d648b431d765e1a1030, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fall: 0
 --- !u!1 &2620898444303466989
 GameObject:
   m_ObjectHideFlags: 0
@@ -134,7 +148,7 @@ MeshCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 5
   m_Convex: 0
   m_CookingOptions: 30

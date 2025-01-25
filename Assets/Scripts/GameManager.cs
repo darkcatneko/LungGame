@@ -9,6 +9,7 @@ public class GameManager : ToSingletonMonoBehavior<GameManager>
 {
     public MainGameEventPack MainGameEvent { get; private set; } = new MainGameEventPack();
     [field: SerializeField] public MainGameMediator MainGameMediator { get; private set; }
+    [SerializeField] public GameObject PlayerOBJ;
     protected override void init()
     {
         base.init();
