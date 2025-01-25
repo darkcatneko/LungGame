@@ -14,11 +14,11 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float hurtTime_;
     
-    [SerializeField] AudioData enemyDeath_audioData_;
     [SerializeField] AudioData playerHurt_audioData_;
     private void Start()
     {
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnPlayerMove, cmd => { playerDirection_ = cmd.Input; });
+        GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnPlayerHurt, cmd => { PlayerHurt(); });
     }
 
     private void FixedUpdate()
@@ -35,22 +35,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void PlayerHurt()
     {
-        if (other.CompareTag("Monster"))
+        if (status_ != PlayerStatus.Hurt) // 避免重複觸發
         {
-            Destroy(other.transform.parent.gameObject);
-            if (status_ != PlayerStatus.Hurt) // 避免重複觸發
-            {
-                StartCoroutine(SwitchToHurt());
-            }
+            StartCoroutine(SwitchToHurt());
         }
     }
 
     private IEnumerator SwitchToHurt()
     {
         status_ = PlayerStatus.Hurt;
-        AudioManager.Instance.PlayRandomSFX(enemyDeath_audioData_);
         AudioManager.Instance.PlayRandomSFX(playerHurt_audioData_);
         UIManager.Instance.OpenPanel(UIType.GameBlood_TransitionPanel);
         yield return new WaitForSeconds(hurtTime_); // 等待2秒

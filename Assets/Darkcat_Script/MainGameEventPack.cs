@@ -6,4 +6,6 @@ public class MainGameEventPack : GameEventPack
 {
     public IObservable<WallShrink> TriggerWallShrink => getSubject<WallShrink>();
     public IObservable<PlayerMoveCommand> OnPlayerMove => getSubject<PlayerMoveCommand>();
+    
+    public IObservable<PlayerHurt> OnPlayerHurt => getSubject<PlayerHurt>();
 }
