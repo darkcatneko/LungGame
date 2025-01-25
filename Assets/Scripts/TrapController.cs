@@ -31,6 +31,9 @@ public class TrapController : MonoBehaviour
     private Queue<Trap> activeTraps = new Queue<Trap>();
     [SerializeField] public Transform playerPosition;
     [SerializeField] public WallShrinkController WallShrinkData;
+    [SerializeField] int[] wallShrinkInt;
+    //現在區間
+    public int nowRangeX;
 
     //[SerializeField] public    // Start is called before the first frame update
     void Start()
@@ -46,55 +49,46 @@ public class TrapController : MonoBehaviour
 
     private void trapAllCreateManager()
     {
-        for (int i = 0; i < trapMax; i++)
+        switch (nowLevel)
+        {
+            case 0:
+                wallShrinkInt = new int[] { 5, 3, 2, 1, 1 };
+                break;
+            case 1:
+                wallShrinkInt = new int[] { 5, 3, 2, 1, 1 };
+                break;
+            default:
+                break;
+        }
+
+        for (int i = 1; i < trapMax; i++)
         {
             if (i % 10 == 0)
             {
+                nowRangeX = nowRangeX - wallShrinkInt[nowShinkTime];
                 nowShinkTime += 1;
             }
             spawnNewTrap(i);
         }
     }
 
-    // private void trapTimeManager()
-    // {
-
-    //     if(totalTime<createTimeMax)
-    //     {
-    //         nowTime += Time.deltaTime;
-    //         if (nowTime >= createTime && nowTrap < trapMax)
-    //         {
-    //             totalTime += nowTime;
-    //             spawnNewTrap();
-    //             nowTime = 0f;
-    //         }
-    //     }
-
-    // }
 
     public Vector3 randomPos(int i)
     {
-        Debug.Log(WallShrinkData.wallShrinkData.wallShrinkValue[nowShinkTime]);
-        Debug.LogWarning("result" + (rangeX - getWallShrinkTotal()));
-        float randomPosX = Random.Range(0, rangeX - getWallShrinkTotal() + 1);//16秒-0 20秒-10 24秒-20  15 10 2 1  //0 5 4 2 1WallShrinkData.wallShrinkValue[nowShinkTime]
-        randomPosX = Mathf.Clamp(randomPosX, 1, 16);//這裡clamp是因為不想讓玩家在最後一定會撞到
-        randomPosX = Random.Range(0, 2) == 0 ? randomPosX : -randomPosX;
-        int posY = Random.Range(0, 0);
-        int posZ = nowShinkRange * i;
 
+        int result = nowRangeX;
+        if (nowRangeX < 0)
+        {
+            result = 0;
+        }
+        float randomPosX = Random.Range(0, result + 1);//0 5 4 2 1WallShrinkData.wallShrinkValue[nowShinkTime]        
+        randomPosX = Random.Range(0, 2) == 0 ? randomPosX : -randomPosX;
+        int posY = 0;
+        int posZ = nowShinkRange * i;
         return new Vector3(randomPosX, posY, posZ);
     }
 
-
-    int getWallShrinkTotal() //因為牆體的推進是會累加的，所以我這裡用累加的方式去算出剩餘可生成空間
-    {
-        var result = 0;
-        for (int i = 0; i < nowShinkTime; i++)
-        {
-            result = result + (int)WallShrinkData.wallShrinkData.wallShrinkValue[i];
-        }
-        return result;
-    }
+  
 
     private void spawnNewTrap(int i)
     {
@@ -138,8 +132,7 @@ public class TrapController : MonoBehaviour
 
     }
     void spawnTopNeedle(int valid)
-    {
-        var validSpace = rangeX - getWallShrinkTotal();
+    {      
         if (nowShinkTime <= 1)
         {
             // 生成從 -15 到 15 的數字範圍
@@ -183,7 +176,12 @@ public class TrapController : MonoBehaviour
         {
 
             GameObject tempObject = Instantiate(trapPrefab[1], transform);
-            float randomPosX = Random.Range(0, rangeX - getWallShrinkTotal() + 1);//16秒-0 20秒-10 24秒-20  15 10 2 1  //0 5 4 2 1WallShrinkData.wallShrinkValue[nowShinkTime]
+            int result = nowRangeX;
+            if (nowRangeX < 0)
+            {
+                result = 0;
+            }
+            float randomPosX = Random.Range(0, result + 1);//0 5 4 2 1WallShrinkData.wallShrinkValue[nowShinkTime]  
             randomPosX = Mathf.Clamp(randomPosX, 1, 16);//這裡clamp是因為不想讓玩家在最後一定會撞到
             randomPosX = Random.Range(0, 2) == 0 ? randomPosX : -randomPosX;
             int posY = 4;
