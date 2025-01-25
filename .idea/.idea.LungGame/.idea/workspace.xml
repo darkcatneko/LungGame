@@ -5,14 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3135195f-c743-480b-8e1f-a32907ed4557" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.LungGame/.idea/projectSettingsUpdater.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.LungGame/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Audio_Player_BreathingNomal3.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Audio_Player_BreathingNomal3.mp3.meta" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Audio_Player_Run2.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Audio_Player_Run2.mp3.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.LungGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LungGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/AllManager/UIManager/Scrips/UIManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AllManager/UIManager/Scrips/UIManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GamePlay.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GamePlay.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Darkcat_Script/GameEventCommands.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Darkcat_Script/GameEventCommands.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Darkcat_Script/MainGameEventPack.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Darkcat_Script/MainGameEventPack.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Darkcat_Script/PlayerMovement/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Darkcat_Script/PlayerMovement/PlayerMovement.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -98,7 +95,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1737821338403</updated>
-      <workItem from="1737821341131" duration="1178000" />
+      <workItem from="1737821341131" duration="2714000" />
     </task>
     <servers />
   </component>

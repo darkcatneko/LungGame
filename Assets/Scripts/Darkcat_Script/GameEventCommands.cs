@@ -19,4 +19,9 @@ namespace Gamemanager
     {
         
     }
+
+    public class SetPlayerBGM : GameEventMessageBase
+    {
+        public bool SetPlayerBGMOpen;
+    }
 }

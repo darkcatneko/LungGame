@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Game.Audio;
 using Game.UI;
+using Gamemanager;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnPlayerMove, cmd => { playerDirection_ = cmd.Input; });
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnPlayerHurt, cmd => { PlayerHurt(); });
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.TriggerWallShrink, cmd => { PlayerCameraShaking(); });
+        GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnSetPlayerBGM, cmd => { playerBGMOpen = cmd.SetPlayerBGMOpen; });
     }
 
     private void Update()
@@ -71,12 +73,13 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator SwitchToHurt()
     {
         status_ = PlayerStatus.Hurt;
-        playerBGMOpen = false;
+        
+        GameManager.Instance.MainGameEvent.Send(new SetPlayerBGM() {SetPlayerBGMOpen = false });    
         AudioManager.Instance.PlayRandomSFX(playerHurt_audioData_);
         UIManager.Instance.OpenPanel(UIType.GameBlood_TransitionPanel);
         yield return new WaitForSeconds(hurtTime_); // 等待2秒
         status_ = PlayerStatus.Run;
-        playerBGMOpen = true;
+        GameManager.Instance.MainGameEvent.Send(new SetPlayerBGM() {SetPlayerBGMOpen = true });  
     }
 }
 

@@ -62,7 +62,7 @@ namespace Game.UI
             LoadSceneManager.OnSceneLoaded += CloseAllPanels;
             LoadSceneManager.OnSceneLoaded += LoadSceneUIConfig;
 
-            InputManagers.OpenSettingsEvent += OnOpenSettings;
+            //InputManagers.OpenSettingsEvent += OnOpenSettings;
             InputManagers.CloseUIEvent += OnCloseUI;
         }
 
@@ -71,7 +71,7 @@ namespace Game.UI
             LoadSceneManager.OnSceneLoaded -= CloseAllPanels;
             LoadSceneManager.OnSceneLoaded -= LoadSceneUIConfig;
 
-            InputManagers.OpenSettingsEvent -= OnOpenSettings;
+            //InputManagers.OpenSettingsEvent -= OnOpenSettings;
             InputManagers.CloseUIEvent -= OnCloseUI;
         }
 
