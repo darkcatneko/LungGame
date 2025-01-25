@@ -10,4 +10,8 @@ namespace Gamemanager
         public Vector2 Input;
     }
 
+    public class WallShrink : GameEventMessageBase
+    {
+        
+    }
 }
