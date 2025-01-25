@@ -5,6 +5,13 @@ using UnityEngine;
 
 namespace Gamemanager
 {
+    public class PlayerMoveCommand : GameEventMessageBase
+    {
+        public Vector2 Input;
+    }
 
-
+    public class WallShrink : GameEventMessageBase
+    {
+        
+    }
 }
