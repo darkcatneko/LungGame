@@ -8,4 +8,5 @@ public class MainGameEventPack : GameEventPack
     public IObservable<PlayerMoveCommand> OnPlayerMove => getSubject<PlayerMoveCommand>();
     public IObservable<PlayerHurt> OnPlayerHurt => getSubject<PlayerHurt>();
     public IObservable<SetPlayerBGM> OnSetPlayerBGM => getSubject<SetPlayerBGM>();
+    public IObservable<StartCommand> OnStartGame => getSubject<StartCommand>();
 }

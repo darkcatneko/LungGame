@@ -21,12 +21,14 @@ public class PlayerMovement : MonoBehaviour
     
     [SerializeField] private GameObject breathingNomalMusicPlayer;
     [SerializeField] private GameObject runMusicPlayer;
+    [SerializeField] Animator camAnimator_;
     private void Start()
     {
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnPlayerMove, cmd => { playerDirection_ = cmd.Input; });
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnPlayerHurt, cmd => { PlayerHurt(); });
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.TriggerWallShrink, cmd => { PlayerCameraShaking(); });
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnSetPlayerBGM, cmd => { playerBGMOpen = cmd.SetPlayerBGMOpen; });
+        GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnStartGame, cmd => { status_ = PlayerStatus.Run; camAnimator_.enabled = true; });
     }
 
     private void Update()
@@ -87,4 +89,5 @@ public enum PlayerStatus
 {
     Run,
     Hurt,
+    Prepare,
 }
