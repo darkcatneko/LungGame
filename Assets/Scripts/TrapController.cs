@@ -73,13 +73,24 @@ public class TrapController : MonoBehaviour
 
     public Vector3 randomPos(int i){
         Debug.Log(WallShrinkData.wallShrinkData.wallShrinkValue[nowShinkTime]);
-        Debug.LogWarning("result"+(rangeX-WallShrinkData.wallShrinkData.wallShrinkValue[nowShinkTime]));
-        float randomPosX = Random.Range(0, rangeX-WallShrinkData.wallShrinkData.wallShrinkValue[nowShinkTime]);//16秒-0 20秒-10 24秒-20  15 10 2 1  //0 5 4 2 1WallShrinkData.wallShrinkValue[nowShinkTime]
+        Debug.LogWarning("result"+(rangeX-getWallShrinkTotal()));
+        float randomPosX = Random.Range(0, rangeX - getWallShrinkTotal()+1);//16秒-0 20秒-10 24秒-20  15 10 2 1  //0 5 4 2 1WallShrinkData.wallShrinkValue[nowShinkTime]
+        randomPosX = Mathf.Clamp(randomPosX, 1, 16);
         randomPosX=Random.Range(0, 2) == 0 ? randomPosX : -randomPosX;
         int posY = Random.Range(0, 0);
         int posZ = nowShinkRange*i;
                
         return new Vector3(randomPosX, posY, posZ);
+    }
+
+   int getWallShrinkTotal()
+    {
+        var result = 0;
+        for (int i = 0; i < nowShinkTime; i++)
+        {
+            result = result + (int)WallShrinkData.wallShrinkData.wallShrinkValue[i];
+        }
+        return  result;
     }
 
     private void spawnNewTrap(int i)

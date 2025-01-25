@@ -175,8 +175,9 @@ MonoBehaviour:
     <maxWidth>k__BackingField: 15
     <wallShrinkValue>k__BackingField:
     - 5
-    - 4
+    - 3
     - 2
+    - 1
     - 1
     - 1
     <shrinkDuration>k__BackingField: 1
@@ -536,10 +537,11 @@ MonoBehaviour:
   timeData:
     <maxTime>k__BackingField: 25
     <levelTime>k__BackingField:
-    - 16
+    - 18
     - 12
     - 8
     - 4
+    - 2
     - 0
   curTime: 0
 --- !u!114 &260246300
@@ -1150,8 +1152,8 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 20
+  m_Color: {r: 0.9924528, g: 0.65726584, b: 0.65726584, a: 1}
+  m_Intensity: 1.5
   m_Range: 34.4
   m_SpotAngle: 67.40583
   m_InnerSpotAngle: 54.098278
@@ -1544,6 +1546,65 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1163886797}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &860384472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 860384474}
+  - component: {fileID: 860384473}
+  m_Layer: 0
+  m_Name: TrapSpawnController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &860384473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860384472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 669c9623acdfa624ba0376f8c21e54b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  createTimeMax: 10
+  createTime: 5
+  nowTime: 0
+  totalTime: 0
+  trapMax: 50
+  nowTrap: 0
+  nowLevel: 0
+  rangeX: 15
+  nowShinkTime: 0
+  nowShinkRange: 6
+  trapPrefab:
+  - {fileID: 7899066856801834581, guid: 907cf46e7d74aa842b114f88644c381f, type: 3}
+  trapPool: []
+  playerPosition: {fileID: 1857671260}
+  WallShrinkData: {fileID: 15779437}
+--- !u!4 &860384474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 860384472}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.16999996, z: 7.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1142210477
 GameObject:
@@ -2789,3 +2850,4 @@ SceneRoots:
   - {fileID: 53249082}
   - {fileID: 1381259554}
   - {fileID: 1175453709}
+  - {fileID: 860384474}

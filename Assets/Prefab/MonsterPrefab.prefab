@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6966203583191876210}
   - component: {fileID: 6865082869494078010}
   - component: {fileID: 4220284261586654239}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 6868008597877726588}
   - component: {fileID: 6581214447972872260}
   - component: {fileID: 3284201690542015418}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FatMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -217,7 +217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7928135568559260981}
   - component: {fileID: -4837124140407726678}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MonsterPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 5186808168109506475}
   - component: {fileID: 6676710160209862750}
   - component: {fileID: 692907268554861122}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ThinMonster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
