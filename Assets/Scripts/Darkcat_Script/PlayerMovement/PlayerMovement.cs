@@ -22,6 +22,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject breathingNomalMusicPlayer;
     [SerializeField] private GameObject runMusicPlayer;
     [SerializeField] Animator camAnimator_;
+    [SerializeField] private Sprite[] leftHandLife;
+     [SerializeField] private Sprite[] rightHandLife;
+    [SerializeField] SpriteRenderer leftHandSprite;
+    [SerializeField] SpriteRenderer rightHandSprite;
+    [SerializeField] GameObject gameOver;
+    [SerializeField] GameObject trapController;
+    [SerializeField] AudioListener audioListener;
+    private int hurtCount;
     private void Start()
     {
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnPlayerMove, cmd => { playerDirection_ = cmd.Input; });
@@ -29,6 +37,7 @@ public class PlayerMovement : MonoBehaviour
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.TriggerWallShrink, cmd => { PlayerCameraShaking(); });
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnSetPlayerBGM, cmd => { playerBGMOpen = cmd.SetPlayerBGMOpen; });
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnStartGame, cmd => { status_ = PlayerStatus.Run; camAnimator_.enabled = true; });
+        hurtCount=0;
     }
 
     private void Update()
@@ -81,7 +90,24 @@ public class PlayerMovement : MonoBehaviour
         UIManager.Instance.OpenPanel(UIType.GameBlood_TransitionPanel);
         yield return new WaitForSeconds(hurtTime_); // 等待2秒
         status_ = PlayerStatus.Run;
-        GameManager.Instance.MainGameEvent.Send(new SetPlayerBGM() {SetPlayerBGMOpen = true });  
+        GameManager.Instance.MainGameEvent.Send(new SetPlayerBGM() {SetPlayerBGMOpen = true });
+        hurtCount++;
+        leftHandSprite.sprite=leftHandLife[hurtCount];
+        rightHandSprite.sprite=rightHandLife[hurtCount];
+        if(hurtCount==2)
+        {
+            playerRigidbody_.drag = 48f;
+            Invoke("GameOver", 5f);
+        }
+        
+    }
+
+    void GameOver(){
+        playerRigidbody_.drag = 50f;
+        camAnimator_.enabled = false;
+        gameOver.SetActive(true);
+        trapController.SetActive(false);
+        GameManager.Instance.MainGameEvent.Send(new SetPlayerBGM() {SetPlayerBGMOpen = false }); 
     }
 }
 
