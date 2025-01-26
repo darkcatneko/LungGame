@@ -2755,8 +2755,8 @@ MonoBehaviour:
   playerHurt_audioData_:
     audioClip: {fileID: 8300000, guid: 2f6f4306b7f3a2d4f8f42925059e79ad, type: 3}
   playerBGMOpen: 0
-  breathingNomalMusicPlayer: {fileID: 0}
-  runMusicPlayer: {fileID: 0}
+  breathingNomalMusicPlayer: {fileID: 21335596}
+  runMusicPlayer: {fileID: 968475715}
   camAnimator_: {fileID: 1859698159}
   leftHandLife:
   - {fileID: 21300000, guid: 3f6ed1aac79ab5641a765ecbd7a1ba3d, type: 3}
@@ -2770,7 +2770,7 @@ MonoBehaviour:
   rightHandSprite: {fileID: 1843845270}
   gameOver: {fileID: 637009150}
   trapController: {fileID: 860384472}
-  audioController: {fileID: 1859698153}
+  audioListener: {fileID: 0}
 --- !u!4 &1857671260 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8085894976534672282, guid: 5feccdb1d80865143be60bc0e29b51c4, type: 3}
