@@ -86,7 +86,7 @@ public class TrapController : MonoBehaviour
         float randomPosX = Random.Range(0, result + 1);//0 5 4 2 1WallShrinkData.wallShrinkValue[nowShinkTime]        
         randomPosX = Random.Range(0, 2) == 0 ? randomPosX : -randomPosX;
         int posY = 0;
-        int posZ = nowShinkRange * i;
+        int posZ = nowShinkRange * (i+1);
         return new Vector3(randomPosX, posY, posZ);
     }
 

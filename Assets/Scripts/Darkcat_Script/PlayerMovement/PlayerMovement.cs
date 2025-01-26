@@ -19,8 +19,6 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private bool playerBGMOpen;
     
-    [SerializeField] private GameObject breathingNomalMusicPlayer;
-    [SerializeField] private GameObject runMusicPlayer;
     [SerializeField] Animator camAnimator_;
     [SerializeField] private Sprite[] leftHandLife;
      [SerializeField] private Sprite[] rightHandLife;
@@ -49,13 +47,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (playerBGMOpen)
         {
-            breathingNomalMusicPlayer.SetActive(true);
-            runMusicPlayer.SetActive(true);
+           GameManager.Instance.breathingNomalMusicPlayer.SetActive(true);
+            GameManager.Instance.runMusicPlayer.SetActive(true);
         }
         else
         {
-            breathingNomalMusicPlayer.SetActive(false);
-            runMusicPlayer.SetActive(false);
+            GameManager.Instance.breathingNomalMusicPlayer.SetActive(false);
+            GameManager.Instance.runMusicPlayer.SetActive(false);
         }
     }
 

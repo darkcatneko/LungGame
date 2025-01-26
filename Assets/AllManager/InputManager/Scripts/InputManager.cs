@@ -207,8 +207,8 @@ namespace Game.Input
             SetActionsMap(InputType.UI);
 
             // 顯示滑鼠
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
 
             // 停止遊戲時間（如有需要）
             Time.timeScale = 1;

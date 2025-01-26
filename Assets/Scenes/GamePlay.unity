@@ -1542,6 +1542,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 1761044814}
+  breathingHard:
+    audioClip: {fileID: 8300000, guid: 7aff4f4e688d6e14391d0fc9bc565ec1, type: 3}
 --- !u!1001 &689230645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2302,6 +2304,10 @@ PrefabInstance:
       propertyPath: bloodPrefab_
       value: 
       objectReference: {fileID: 201381084}
+    - target: {fileID: 8622802555896612562, guid: c7727dd79279be644b5a4ae33395d136, type: 3}
+      propertyPath: flood_.audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6773814e323831a4c9bdc6cc96f17c63, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2566,7 +2572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeData:
-    <maxTime>k__BackingField: 29
+    <maxTime>k__BackingField: 40
     <levelTime>k__BackingField:
     - 18
     - 12
@@ -2887,9 +2893,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90a63c72312a2e04d8e9e970546ef86a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  status_: 2
+  status_: 3
   playerRigidbody_: {fileID: 1857671255}
-  basicSpeed_: 15
+  basicSpeed_: 10
   playerDirection_: {x: 0, y: 1}
   hurtTime_: 1.5
   playerHurt_audioData_:
@@ -2909,6 +2915,7 @@ MonoBehaviour:
   gameOver: {fileID: 637009150}
   trapController: {fileID: 860384472}
   audioListener: {fileID: 0}
+  waitJumpScare: 3
 --- !u!4 &1857671260 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8085894976534672282, guid: 5feccdb1d80865143be60bc0e29b51c4, type: 3}
