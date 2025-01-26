@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game.Audio;
 using UnityEngine;
 
 public class BossTriggerGameOverUI : MonoBehaviour
 {
     [SerializeField] GameObject gameOverUI;
+    [SerializeField] private AudioData breathingHard;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -17,6 +19,7 @@ public class BossTriggerGameOverUI : MonoBehaviour
 
     public void TriggerGameOver()
     {
+        AudioManager.Instance.PlayRandomSFX(breathingHard);
         gameOverUI.SetActive(true);
     }
 }

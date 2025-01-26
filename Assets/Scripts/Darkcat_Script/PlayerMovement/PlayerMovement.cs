@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         else if (status_ == PlayerStatus.Death)
         {
             var dir = new Vector3(playerDirection_.x, 0, playerDirection_.y);
-            playerRigidbody_.velocity = basicSpeed_ * dir / 10f;
+            playerRigidbody_.velocity = basicSpeed_ * dir / 25f;
         }
     }
 
@@ -124,12 +124,13 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator IEGameOver()
     {
         status_ = PlayerStatus.Death;
+        gameOver.SetActive(true);
         
         yield return new WaitForSeconds(waitJumpScare); // 等待2秒
         
         playerRigidbody_.drag = 50f;
         camAnimator_.enabled = false;
-        gameOver.SetActive(true);
+
         trapController.SetActive(false);
         GameManager.Instance.MainGameEvent.Send(new SetPlayerBGM() {SetPlayerBGMOpen = false }); 
     }

@@ -4,14 +4,18 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using Cysharp.Threading.Tasks;
+using Game.Audio;
 
 public class BloodWaveSpawner : MonoBehaviour
 {
     [SerializeField] GameObject bloodPrefab_;
     [SerializeField] float speedUpValue_;
+    [SerializeField] AudioData flood_;
+    
     void Start()
     {
         spawner();
+        AudioManager.Instance.PlaySFX(flood_);
     }
 
     // Update is called once per frame
