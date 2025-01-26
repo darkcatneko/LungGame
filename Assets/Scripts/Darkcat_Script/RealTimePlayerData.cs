@@ -3,7 +3,5 @@ using Gamemanager;
 
 public class RealTimePlayerData
 {
-    //which level
-    //which status
-    //
+    public int NowLevel = 0;
 }

@@ -25,4 +25,6 @@ namespace Gamemanager
         public bool SetPlayerBGMOpen;
     }
     public class StartCommand:GameEventMessageBase { }
+
+    public class CallCamShake : GameEventMessageBase { }
 }

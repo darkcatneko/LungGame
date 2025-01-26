@@ -9,4 +9,8 @@ public class PlayerAnimationEvent : MonoBehaviour
     {
         GameManager.Instance.MainGameEvent.Send(new StartCommand());
     }
+    public void PlayerCallShake()
+    {
+        GameManager.Instance.MainGameEvent.Send(new CallCamShake());
+    }
 }
