@@ -10,7 +10,7 @@ public class WallShrinkController : MonoBehaviour
     {
         [field: SerializeField] public float maxWidth { get; private set; } = 15f;
         [field: SerializeField] public float[] wallShrinkValue { get; private set; }
-        [field: SerializeField] public float shrinkDuration { get; private set; } = 1f; // 控制平滑过渡的持续时间
+        [field: SerializeField] public float shrinkDuration { get; private set; } = 1f; // 控制平滑過渡的持續時間
     }
 
     [SerializeField] private GameObject rightWall;
@@ -19,52 +19,75 @@ public class WallShrinkController : MonoBehaviour
     public WallShrinkData wallShrinkData;
 
     [SerializeField] private float curWidth;
-    [SerializeField] private int curWallShrinkIndex = 0; // 当前使用的缩放索引
-    
+    [SerializeField] private int curWallShrinkIndex = 0; // 當前使用的縮放索引
+
     [SerializeField] private AudioData wallShrinkAudioData;
-    
-    private bool isShrinking = false; // 防止多次调用导致的过渡冲突
+
+    private Coroutine shrinkCoroutine; // 用於追蹤當前過渡協程
 
     private void Awake()
     {
         curWidth = wallShrinkData.maxWidth;
-        GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.TriggerWallShrink,
-            cmd => { SmoothWallShrink(); });
-        
+        GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.TriggerWallShrink, cmd => { SmoothWallShrink(); });
+        GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnPlayerHurt, cmd => { PlayerHurtWallShrink(); });
     }
 
     void SmoothWallShrink()
     {
-        StartCoroutine(IESmoothWallShrink(wallShrinkData.wallShrinkValue[curWallShrinkIndex]));
-        AudioManager.Instance.PlayRandomSFX(wallShrinkAudioData);
-        curWallShrinkIndex++; // 更新索引值
+        if (curWallShrinkIndex < wallShrinkData.wallShrinkValue.Length)
+        {
+            StartShrink(wallShrinkData.wallShrinkValue[curWallShrinkIndex]);
+            curWallShrinkIndex++; // 更新索引值
+        }
     }
-    
+
+    void PlayerHurtWallShrink()
+    {
+        StartShrink(1f); // 玩家受傷時的縮放值
+    }
+
+    void StartShrink(float value)
+    {
+        // 如果有正在執行的協程，先停止
+        if (shrinkCoroutine != null)
+        {
+            StopCoroutine(shrinkCoroutine);
+        }
+
+        // 啟動新的縮放協程
+        shrinkCoroutine = StartCoroutine(IESmoothWallShrink(value));
+    }
+
     IEnumerator IESmoothWallShrink(float value)
     {
-        isShrinking = true; // 标记为正在过渡
-
-        float targetWidth = curWidth - value; // 目标宽度
-        float elapsedTime = 0f; // 记录时间
-        float startWidth = curWidth; // 记录初始宽度
-
+        float targetWidth = Mathf.Max(curWidth - value, 1f); // 確保目標寬度不低於 1f
+        float elapsedTime = 0f; // 記錄時間
+        float startWidth = curWidth; // 記錄初始寬度
+        
         while (elapsedTime < wallShrinkData.shrinkDuration)
         {
             elapsedTime += Time.deltaTime;
-            curWidth = Mathf.Lerp(startWidth, targetWidth, elapsedTime / wallShrinkData.shrinkDuration); // 线性插值
+            curWidth = Mathf.Lerp(startWidth, targetWidth, elapsedTime / wallShrinkData.shrinkDuration); // 線性插值
 
-            // 更新墙壁的位置
+            // 更新牆壁的位置
             rightWall.transform.position = new Vector3(curWidth, rightWall.transform.position.y, rightWall.transform.position.z);
             leftWall.transform.position = new Vector3(-curWidth, leftWall.transform.position.y, leftWall.transform.position.z);
 
-            yield return null; // 等待下一帧
+            yield return null; // 等待下一幀
         }
 
-        // 确保最终到达目标宽度
+        // 確保最終到達目標寬度
         curWidth = targetWidth;
         rightWall.transform.position = new Vector3(curWidth, rightWall.transform.position.y, rightWall.transform.position.z);
         leftWall.transform.position = new Vector3(-curWidth, leftWall.transform.position.y, leftWall.transform.position.z);
 
-        isShrinking = false; // 过渡结束
+        AudioManager.Instance.PlayRandomSFX(wallShrinkAudioData);
+
+        if (curWidth == 1.0f)
+        {
+            GameManager.Instance.MainGameEvent.Send(new GameOver());
+        }
+        
+        shrinkCoroutine = null; // 過渡結束後清空協程引用
     }
 }

@@ -12,6 +12,8 @@ public class MonsteBreathrBehavior : MonoBehaviour
     [SerializeField] GameObject fat_;
     
     [SerializeField] AudioData enemyDeath_audioData_;
+    
+    [SerializeField] bool noBreath_;
     void Start()
     {
 
@@ -20,6 +22,10 @@ public class MonsteBreathrBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (noBreath_)
+        {
+            return;
+        }
         elapsedTime += Time.deltaTime;
         
         if (elapsedTime >= 1f)

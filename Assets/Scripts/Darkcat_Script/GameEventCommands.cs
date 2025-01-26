@@ -24,5 +24,14 @@ namespace Gamemanager
     {
         public bool SetPlayerBGMOpen;
     }
-    public class StartCommand:GameEventMessageBase { }
+
+    public class StartCommand : GameEventMessageBase
+    {
+        
+    }
+
+    public class GameOver : GameEventMessageBase
+    {
+        
+    }
 }

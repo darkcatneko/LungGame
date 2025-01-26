@@ -2,14 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Game.Audio;
+using Gamemanager;
 
 public class NeedleFaller : MonoBehaviour
 {
     [SerializeField] bool fall = false;
-    void Start()
-    {
-        
-    }
+    
 
     // Update is called once per frame
     void Update()

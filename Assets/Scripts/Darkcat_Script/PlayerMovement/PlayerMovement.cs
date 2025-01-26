@@ -30,13 +30,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] GameObject trapController;
     [SerializeField] AudioListener audioListener;
     private int hurtCount;
+
+    [SerializeField] private float waitJumpScare = 3f;
     private void Start()
     {
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnPlayerMove, cmd => { playerDirection_ = cmd.Input; });
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnPlayerHurt, cmd => { PlayerHurt(); });
+        GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnPlayerHurt, cmd => { PlayerCameraShaking(); });
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.TriggerWallShrink, cmd => { PlayerCameraShaking(); });
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnSetPlayerBGM, cmd => { playerBGMOpen = cmd.SetPlayerBGMOpen; });
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnStartGame, cmd => { status_ = PlayerStatus.Run; camAnimator_.enabled = true; });
+        GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnGameOver, cmd => { GameOver(); });
         hurtCount=0;
     }
 
@@ -70,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerCameraShaking()
     {
-        GetComponentInChildren<Animator>().SetTrigger("Shaking");
+        camAnimator_.SetTrigger("Shaking");
     }
     
     private void PlayerHurt()
@@ -88,21 +92,30 @@ public class PlayerMovement : MonoBehaviour
         GameManager.Instance.MainGameEvent.Send(new SetPlayerBGM() {SetPlayerBGMOpen = false });    
         AudioManager.Instance.PlayRandomSFX(playerHurt_audioData_);
         UIManager.Instance.OpenPanel(UIType.GameBlood_TransitionPanel);
+
+        hurtCount++;
+        hurtCount = Mathf.Clamp(hurtCount, 0, 2); // 將 hurtCount 限制在 0 到 2 之間
+
+        leftHandSprite.sprite=leftHandLife[hurtCount];
+        rightHandSprite.sprite=rightHandLife[hurtCount];
+
+        
         yield return new WaitForSeconds(hurtTime_); // 等待2秒
         status_ = PlayerStatus.Run;
         GameManager.Instance.MainGameEvent.Send(new SetPlayerBGM() {SetPlayerBGMOpen = true });
-        hurtCount++;
-        leftHandSprite.sprite=leftHandLife[hurtCount];
-        rightHandSprite.sprite=rightHandLife[hurtCount];
-        if(hurtCount==2)
-        {
-            playerRigidbody_.drag = 48f;
-            Invoke("GameOver", 5f);
-        }
-        
     }
 
-    void GameOver(){
+    void GameOver()
+    {
+        StartCoroutine(IEGameOver());
+    }
+
+    IEnumerator IEGameOver()
+    {
+        status_ = PlayerStatus.Hurt;
+        
+        yield return new WaitForSeconds(waitJumpScare); // 等待2秒
+        
         playerRigidbody_.drag = 50f;
         camAnimator_.enabled = false;
         gameOver.SetActive(true);
