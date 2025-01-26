@@ -11,5 +11,9 @@ public class PlayerControllerView : MonoBehaviour
         Vector2 moveDirection = new Vector2(message.x, 1f).normalized;
         GameManager.Instance.MainGameEvent.Send(new PlayerMoveCommand() {Input = moveDirection });                                                                
     }
+    void OnBackToTitle()
+    {
+        GameManager.Instance.MainGameEvent.Send(new BackToTitleCmd());
+    }
 
 }

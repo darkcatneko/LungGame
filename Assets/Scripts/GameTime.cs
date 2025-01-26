@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Gamemanager;
 using UnityEngine;
 
-public class GameTimeManager : ToSingletonMonoBehavior<GameTimeManager>
+public class GameTimeManager : MonoBehaviour
 {
     [System.Serializable]
     public class LevelTimeWallShrinkData

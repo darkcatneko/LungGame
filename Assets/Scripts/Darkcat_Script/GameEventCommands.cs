@@ -37,4 +37,8 @@ namespace Gamemanager
     
 
     public class CallCamShake : GameEventMessageBase { }
+    public class  BackToTitleCmd:GameEventMessageBase
+    {
+        
+    }
 }
