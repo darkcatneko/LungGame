@@ -106,12 +106,6 @@ public class TrapController : MonoBehaviour
             default:
                 break;
             case 0:
-                // Does it already exist within our pool
-                //Trap trap = trapPool.Find(x => !x.gameObject.activeSelf );//&& x.name == (trapPrefab[randomIndex].name + "(Clone)")
-
-                // Create a chunk, if were not able to find one to reuse
-                // if (!trap)
-                // {
                 GameObject tempObject = Instantiate(trapPrefab[randomResult], transform);
                 Trap trap = tempObject.GetComponent<Trap>();
                 //}

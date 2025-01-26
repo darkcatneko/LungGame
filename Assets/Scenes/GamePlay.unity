@@ -625,7 +625,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9a22f5735a9421449339cc98e3fdcf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerOBJ: {fileID: 1857671250}
+  PlayerOBJ: {fileID: 0}
 --- !u!4 &260246297
 Transform:
   m_ObjectHideFlags: 0
@@ -1880,7 +1880,7 @@ MonoBehaviour:
   playerPosition: {fileID: 1857671260}
   WallShrinkData: {fileID: 15779437}
   wallShrinkInt: 
-  nowRangeX: 15
+  nowRangeX: 0
 --- !u!4 &860384474
 Transform:
   m_ObjectHideFlags: 0
@@ -2755,22 +2755,16 @@ MonoBehaviour:
   playerHurt_audioData_:
     audioClip: {fileID: 8300000, guid: 2f6f4306b7f3a2d4f8f42925059e79ad, type: 3}
   playerBGMOpen: 0
-  breathingNomalMusicPlayer: {fileID: 0}
-  runMusicPlayer: {fileID: 0}
+  breathingNomalMusicPlayer: {fileID: 21335596}
+  runMusicPlayer: {fileID: 968475715}
   camAnimator_: {fileID: 1859698159}
-  leftHandLife:
-  - {fileID: 21300000, guid: 3f6ed1aac79ab5641a765ecbd7a1ba3d, type: 3}
-  - {fileID: 21300000, guid: 602225a329953fe46952987c30f2f72c, type: 3}
-  - {fileID: 21300000, guid: 7e2c5970dafc6c141ac32bf2b67ba3ca, type: 3}
-  rightHandLife:
-  - {fileID: 21300000, guid: c16287e86a9da8f48ab872aee91a9529, type: 3}
-  - {fileID: 21300000, guid: c71a18be7f1fa2a47aa04fcf10f5970b, type: 3}
-  - {fileID: 21300000, guid: f03dd8507084bc341bf8ae5af7811d55, type: 3}
+  leftHandLife: []
+  rightHandLife: []
   leftHandSprite: {fileID: 189189419}
   rightHandSprite: {fileID: 1843845270}
   gameOver: {fileID: 637009150}
   trapController: {fileID: 860384472}
-  audioController: {fileID: 1859698153}
+  audioListener: {fileID: 1859698163}
 --- !u!4 &1857671260 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8085894976534672282, guid: 5feccdb1d80865143be60bc0e29b51c4, type: 3}
@@ -2835,6 +2829,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!81 &1859698163 stripped
+AudioListener:
+  m_CorrespondingSourceObject: {fileID: 8418850248169038810, guid: 5feccdb1d80865143be60bc0e29b51c4, type: 3}
+  m_PrefabInstance: {fileID: 689230645}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1878143051
 GameObject:
   m_ObjectHideFlags: 0
