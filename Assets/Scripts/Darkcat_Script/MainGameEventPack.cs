@@ -10,4 +10,5 @@ public class MainGameEventPack : GameEventPack
     public IObservable<SetPlayerBGM> OnSetPlayerBGM => getSubject<SetPlayerBGM>();
     public IObservable<StartCommand> OnStartGame => getSubject<StartCommand>();
     public IObservable<GameOver> OnGameOver => getSubject<GameOver>();
+    public IObservable<CallCamShake> OnCallCamShake => getSubject<CallCamShake>();
 }

@@ -34,4 +34,7 @@ namespace Gamemanager
     {
         
     }
+    
+
+    public class CallCamShake : GameEventMessageBase { }
 }
