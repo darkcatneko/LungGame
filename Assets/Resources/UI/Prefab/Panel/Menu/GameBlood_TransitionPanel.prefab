@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abcad1f7e276f9f4eb021834d337bdfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isSetInputActive: 0
+  isSetInputActive: 1
   audio_NormalBtn:
     audioClip: {fileID: 0}
 --- !u!1 &8179488164120137043
