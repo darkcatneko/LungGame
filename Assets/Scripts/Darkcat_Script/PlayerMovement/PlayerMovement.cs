@@ -40,8 +40,8 @@ public class PlayerMovement : MonoBehaviour
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.TriggerWallShrink, cmd => { PlayerCameraShaking(); });
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnCallCamShake, cmd => { PlayerCameraShaking(); });
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnSetPlayerBGM, cmd => { playerBGMOpen = cmd.SetPlayerBGMOpen; });
-        GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnStartGame, cmd => { status_ = PlayerStatus.Run; camAnimator_.enabled = true; });
         GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnGameOver, cmd => { GameOver(); });
+        GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnStartGame, cmd => { status_ = PlayerStatus.Run; camAnimator_.SetBool("GameStart", true); });
         hurtCount=0;
     }
 
@@ -67,6 +67,11 @@ public class PlayerMovement : MonoBehaviour
             playerRigidbody_.velocity = basicSpeed_ * dir;
         }
         else if (status_ == PlayerStatus.Hurt)
+        {
+            var dir = new Vector3(playerDirection_.x, 0, playerDirection_.y);
+            playerRigidbody_.velocity = basicSpeed_ * dir / 10f;
+        }
+        else if (status_ == PlayerStatus.Death)
         {
             var dir = new Vector3(playerDirection_.x, 0, playerDirection_.y);
             playerRigidbody_.velocity = basicSpeed_ * dir / 10f;
@@ -102,8 +107,13 @@ public class PlayerMovement : MonoBehaviour
 
         
         yield return new WaitForSeconds(hurtTime_); // 等待2秒
-        status_ = PlayerStatus.Run;
         GameManager.Instance.MainGameEvent.Send(new SetPlayerBGM() {SetPlayerBGMOpen = true });
+        
+        if (status_ != PlayerStatus.Death)
+        {
+            status_ = PlayerStatus.Run;
+        }
+
     }
 
     void GameOver()
@@ -113,7 +123,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator IEGameOver()
     {
-        status_ = PlayerStatus.Hurt;
+        status_ = PlayerStatus.Death;
         
         yield return new WaitForSeconds(waitJumpScare); // 等待2秒
         
@@ -129,5 +139,6 @@ public enum PlayerStatus
 {
     Run,
     Hurt,
+    Death,
     Prepare,
 }

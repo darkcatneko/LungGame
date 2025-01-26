@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2164834527290708029}
   - component: {fileID: -5869051474474131421}
+  - component: {fileID: 7030637025138148006}
   m_Layer: 0
   m_Name: needleHead (H)
   m_TagString: Untagged
@@ -46,6 +47,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fall: 0
+--- !u!114 &7030637025138148006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128979627338468290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee29e652f9fc67744ba96919dd122047, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2620898444303466989
 GameObject:
   m_ObjectHideFlags: 0

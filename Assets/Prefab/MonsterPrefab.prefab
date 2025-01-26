@@ -124,6 +124,7 @@ MonoBehaviour:
   fat_: {fileID: 5425953652008438590}
   enemyDeath_audioData_:
     audioClip: {fileID: 8300000, guid: b84edc963c0e8ac4ba5ec98308a6b3b8, type: 3}
+  noBreath_: 0
 --- !u!1 &5425953652008438590
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,6 +218,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7928135568559260981}
   - component: {fileID: -4837124140407726678}
+  - component: {fileID: 7486382658615809978}
   m_Layer: 7
   m_Name: MonsterPrefab
   m_TagString: Untagged
@@ -252,6 +254,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 831e18f321e4fc54190c5ce45dabf708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7486382658615809978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7899066856801834581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee29e652f9fc67744ba96919dd122047, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8245125671497116859

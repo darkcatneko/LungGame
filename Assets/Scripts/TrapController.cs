@@ -39,6 +39,8 @@ public class TrapController : MonoBehaviour
     void Start()
     {
         trapAllCreateManager();
+        GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnGameOver,
+            cmd => { gameOverDestroy(); });
     }
 
     // Update is called once per frame
@@ -191,5 +193,14 @@ public class TrapController : MonoBehaviour
         Trap trap = activeTraps.Dequeue();
         trap.hideTrap();
         trapPool.Add(trap);
+    }
+
+    void gameOverDestroy()
+    {
+        for (int i = this.gameObject.transform.childCount-1; i >=0; i--)
+        {
+            var child = this.gameObject.transform.GetChild(i);
+            Destroy(child.gameObject);
+        }
     }
 }

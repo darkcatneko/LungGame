@@ -16,7 +16,8 @@ public class MonsteBreathrBehavior : MonoBehaviour
     [SerializeField] bool noBreath_;
     void Start()
     {
-
+        GameManager.Instance.MainGameEvent.SetSubscribe(GameManager.Instance.MainGameEvent.OnGameOver,
+            cmd => { Destroy(this); });
     }
 
     // Update is called once per frame
